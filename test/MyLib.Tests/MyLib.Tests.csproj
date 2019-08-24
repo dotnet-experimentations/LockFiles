@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.2;netcoreapp3.0</TargetFrameworks>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(LatestVersion)" />
+    <PackageReference Include="xunit" Version="$(LatestVersion)" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="$(LatestVersion)" />
+    <PackageReference Include="coverlet.collector" Version="$(LatestVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MyLib\MyLib.csproj" />
+  </ItemGroup>
+
+</Project>

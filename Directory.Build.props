@@ -1,0 +1,12 @@
+<Project>
+    <PropertyGroup>
+        <WarnAsError />
+        <LangVersion>preview</LangVersion>
+        <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <LatestVersion>[*, 9999.0]</LatestVersion>
+    </PropertyGroup>
+
+</Project>
