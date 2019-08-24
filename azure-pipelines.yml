@@ -1,0 +1,70 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+
+
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- master
+
+pool:
+#   vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+name: 'Build, Test and Publish - Multi Target netcoreapp2.2 and 3.0'
+
+steps:
+- task: DotNetCoreInstaller@1
+  displayName: 'Install .NET Core sdk 2.2.401'
+  inputs:
+    version: '2.2.401'
+
+- task: DotNetCoreInstaller@1
+  displayName: 'Install .NET Core sdk 3.0.100-preview8-013656'
+  inputs:
+    version: '3.0.100-preview8-013656'
+    includePreviewVersions: true
+
+- task: DotNetCoreCLI@2
+  displayName: 'DotNet Restore'
+  inputs:
+    command: 'restore'
+    configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'DotNet Build'
+  inputs:
+    command: 'build'
+    configuration: '$(buildConfiguration)'
+    buildProperties: '$(buildPlatform)'
+    # msbuildArgs: 
+    #   /p:DeployOnBuild=true
+    #   /p:WebPublishMethod=Package
+    #   /p:PackageAsSingleFile=true
+    #   /p:SkipInvalidConfigurations=true
+    #   /p:PackageLocation="$(build.artifactStagingDirectory)"
+
+- task: DotNetCoreCLI@2
+  displayName: 'DotNet Test'
+  inputs:
+    command: 'test'
+    configuration: '$(buildConfiguration)'
+
+# - task: DotNetCoreCLI@2
+#   displayName: 'DotNet Publish'
+#   inputs:
+#     command: 'publish'
+#     publishWebProjects: false
+#     projects: 'src/MyHost/MyHost.csproj'
+#     arguments: '--self-contained --runtime win10-x64'
