@@ -18,11 +18,13 @@
 
     <!-- Generate lock files on restore -->
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-    <RestoreLockedMode>$(IsOnCI)</RestoreLockedMode>
+    <RestoreLockedMode Condition="'$(RestoreLockedMode)' != 'true'">$(IsOnCI)</RestoreLockedMode>
   </PropertyGroup>
 
-  <Target Name="Output 'IsOnCI'" AfterTargets="_GenerateRestoreProjectSpec">
+  <Target Name="Output 'IsOnCI'" BeforeTargets="_GenerateRestoreProjectSpec">
     <Message Text="Just ran with 'IsOnCI' : '$(IsOnCI)'" Importance="high" />
+    <Message Text="Just ran with 'RestorePackagesWithLockFile' : '$(RestorePackagesWithLockFile)'" Importance="high" />
+    <Message Text="Just ran with 'RestoreLockedMode' : '$(RestoreLockedMode)'" Importance="high" />
   </Target>
 
 </Project>
