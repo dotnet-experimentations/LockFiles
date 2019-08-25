@@ -1,12 +1,28 @@
 <Project>
-    <PropertyGroup>
-        <WarnAsError />
-        <LangVersion>preview</LangVersion>
-        <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
-    </PropertyGroup>
+  <PropertyGroup>
+    <WarnAsError />
+    <LangVersion>preview</LangVersion>
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <LatestVersion>[*, 9999.0]</LatestVersion>
-    </PropertyGroup>
+  <PropertyGroup Label="Detecting if on the CI or faking the CI to repro">
+    <IsOnCI>false</IsOnCI>
+    <IsOnCI Condition="'$(FakeCi)' == 'true' Or '$(FakeCi)' == '1' ">true</IsOnCI>
+    <IsOnCI Condition="'$(TF_BUILD)' == 'true' Or '$(TF_BUILD)' == '1'">true</IsOnCI>
+    <IsOnCI Condition="'$(TEAMCITY_VERSION)' != ''">true</IsOnCI>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Always restore latest version -->
+    <LatestVersion>[*, 9999.0]</LatestVersion>
+
+    <!-- Generate lock files on restore -->
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode>$(IsOnCI)</RestoreLockedMode>
+  </PropertyGroup>
+
+  <Target Name="Output 'IsOnCI'" AfterTargets="_GenerateRestoreProjectSpec">
+    <Message Text="Just ran with 'IsOnCI' : '$(IsOnCI)'" Importance="high" />
+  </Target>
 
 </Project>
