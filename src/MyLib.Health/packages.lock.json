@@ -23,7 +23,7 @@
         "type": "Direct",
         "requested": "[2.0.3, )",
         "resolved": "2.0.3",
-        "contentHash": "wPMehlY4tg4UwAJOTWdT+M6MntouzD5Eu2XEvYoctfyXm3tKVPVEyekPPBGEYlByN8WX8HpY/MfHTVx9PEtzkQ==",
+        "contentHash": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
@@ -133,7 +133,7 @@
       "System.Buffers": {
         "type": "Transitive",
         "resolved": "4.5.0",
-        "contentHash": "XwTNJELps//tFok+19Nhf89yQWklXcQ1X3cANgxY9spvbwDouTu+Xv7ajHx/k4et1dwpewtkSUpIBavv2N3ZTQ=="
+        "contentHash": "pL2ChpaRRWI/p4LXyy4RgeWlYF2sgfj/pnVMvBqwNFr5cXg7CXNnWZWxrOONLg8VGdFB8oB+EG2Qw4MLgTOe+A=="
       },
       "System.ComponentModel.Annotations": {
         "type": "Transitive",
