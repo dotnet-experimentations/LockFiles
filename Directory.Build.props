@@ -16,6 +16,8 @@
     <!-- Always restore latest version -->
     <LatestVersion>[*, 9999.0]</LatestVersion>
 
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+
     <!-- Generate lock files on restore -->
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     
