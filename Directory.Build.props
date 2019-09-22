@@ -22,7 +22,7 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     
     <!-- only override if not true already like when a developper try to run dotnet restore locked-mode -->
-    <RestoreLockedMode Condition="'$(RestoreLockedMode)' != 'true'">$(IsOnCI)</RestoreLockedMode>
+    <RestoreLockedMode>$(IsOnCI)</RestoreLockedMode>
   </PropertyGroup>
 
   <Target Name="Output 'IsOnCI'" BeforeTargets="_GenerateRestoreProjectSpec">
